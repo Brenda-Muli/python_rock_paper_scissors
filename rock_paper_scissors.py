@@ -1,28 +1,52 @@
 #import of random module to generate random choices for the computer
 import random
 
-#use of int to convert the input to an integer
-user_choice= int(input('Enter your choice: Type 0 for Rock, 1 for Paper, 2 for Scissors.'))
+# Initializing scores and setting the number of rounds
+user_score = 0
+computer_score = 0
+rounds = 3
 
-#generating a random integer between 0-2
-computer_choice = random.randint(0,2)
-
-#print computer and user choice
-print('Computer Chose:')
-print(computer_choice)
-print('You Chose:')
-print(user_choice)
-
-#if else statements to determine who wins or loses
-if user_choice >=3 or user_choice <0:
-    print('Enter a valid number:')
-elif computer_choice == user_choice:
-    print('It is a draw')
-elif user_choice == 0 and computer_choice == 2:
-    print('You win!')
-elif computer_choice == 0 and user_choice == 2:
-    print('You loose')
-elif user_choice > computer_choice:
-    print('You win!')
+#if else statement to determine points needed for a win
+if rounds == 3:
+    points_to_win = 2
 else:
-    print('You lose')
+    points_to_win = 0
+
+# mapping of numbers to their string values
+choices = ['Rock', 'Paper', 'Scissors']
+
+# A loop for when the user nor the computer had reached the points to win
+while user_score < points_to_win and computer_score < points_to_win:
+
+# Getting user choice
+    user_input = None
+    while user_input not in [0, 1, 2]:
+        user_input = int(input('Enter your choice: Type 0 for Rock, 1 for Paper, 2 for Scissors: '))
+        if user_input not in [0, 1, 2]:
+            print('Invalid choice. Please enter 0, 1, or 2.')
+
+# Getting computer choice
+    computer_choice = random.randint(0, 2)
+    print(f'Computer chose: {choices[computer_choice]}')
+    print(f'You chose: {choices[user_input]}')
+
+# Determining the winner of the round
+    if user_input == computer_choice:
+        print('It is a draw!')
+    elif (user_input == 0 and computer_choice == 2) or \
+         (user_input == 1 and computer_choice == 0) or \
+         (user_input == 2 and computer_choice == 1):
+        print('You win this round!')
+        user_score += 1
+    else:
+        print('You lose this round!')
+        computer_score += 1
+    print(f'Score - Your score is: {user_score}, Computer score is: {computer_score}')
+
+# Declaring the overall winner
+if user_score > computer_score:
+    print('Congratulations! You are the overall winner!')
+else:
+    print('The computer wins this time, Try again.')
+
+print('Game Over')
