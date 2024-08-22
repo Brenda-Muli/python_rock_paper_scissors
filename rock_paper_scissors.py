@@ -15,7 +15,7 @@ else:
 # mapping of numbers to their string values
 choices = ['Rock', 'Paper', 'Scissors']
 
-# A loop for when the user nor the computer has reached the points to win
+# A loop for when the user nor the computer has not yet reached the points to win
 while user_score < points_to_win and computer_score < points_to_win:
 
 # Getting user choice
